@@ -20,7 +20,11 @@ getGEO <- function(GEO=NULL,
       return(getAndParseGSEMatrices(GEO,destdir,AnnotGPL=AnnotGPL,getGPL=getGPL))
     }
     filename <- getGEOfile(GEO,destdir=destdir,AnnotGPL=AnnotGPL)
-  }      
+    if(filename == "missing"){
+      message("Unable to download file")
+      return(NULL)
+    }
+  }
   ret <- parseGEO(filename,GSElimits,destdir,AnnotGPL=AnnotGPL,getGPL=getGPL)
   return(ret)
 }       
